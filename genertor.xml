@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+  	<commentGenerator>
+  <property name="suppressAllComments" value="true" />
+</commentGenerator>
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/ssm-crud?serverTimezone=UTC"
+        userId="root"
+        password="123456">
+    </jdbcConnection>
+	
+	<!-- 不需要管 -->
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+	<!-- 指定java bean生成的位置 -->
+	<!-- 全程是.src\main\java com.gec.cud.bean -->
+    <javaModelGenerator targetPackage="com.gec.crud.bean" targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+	<!-- 指定映射文件生成的位置 -->
+    <sqlMapGenerator targetPackage="mapper" 
+    	 targetProject=".\src\main\resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+	<!-- mapper接口，dao生成策略 -->
+    <javaClientGenerator type="XMLMAPPER" 
+    	 targetPackage="com.gec.crud.dao"  
+    	  targetProject=".\src\main\java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+	<!-- table属性表示生成sql表的生成策略 ,从官方文档里获取-->
+    <table tableName="tbl_emp"  domainObjectName="Employee"></table>
+    <!-- 表名与对应的Javabean -->
+    <table tableName="tbl_dept"  domainObjectName="Department"></table>
+  </context>
+</generatorConfiguration>
